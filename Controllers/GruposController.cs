@@ -30,6 +30,11 @@ namespace PortalEquador.Controllers
         public ActionResult Index()
         {
 
+            /*
+            var grupos = _repo.FindAll().ToList();
+            var modelo = _mapper.Map<List<Grupo>, List<GrupoViewModel>>(grupos);
+            */
+
             List<GrupoViewModel> modelo = new List<GrupoViewModel>();
             modelo.Add(new GrupoViewModel
             {
@@ -95,7 +100,24 @@ namespace PortalEquador.Controllers
         // GET: Grupos/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            /*
+            if (!_repo.isExists(id))
+            {
+                return NotFound();
+            }
+
+            var leaveType = _repo.FindById(id);
+            var modelo = _mapper.Map<GrupoViewModel>(leaveType);
+            */
+
+            var modelo = new GrupoViewModel
+            {
+                Descricao = "Item um",
+                DataCriacao = DateTime.Now
+            };
+
+
+            return View(modelo);
         }
 
         // POST: Grupos/Edit/5
