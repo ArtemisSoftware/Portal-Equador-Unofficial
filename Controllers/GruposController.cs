@@ -59,16 +59,32 @@ namespace PortalEquador.Controllers
         // POST: Grupos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(GrupoViewModel modelo)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                {
+                    return View(modelo);
+                }
+                /*
+                var leaveType = _mapper.Map<LeaveType>(model);
+                leaveType.DateCreated = DateTime.Now;
 
+                var isSuccess = _repo.Create(leaveType);
+
+                if (!isSuccess)
+                {
+                    ModelState.AddModelError("", "Something Went wrong...");
+                    return View(model);
+                }
+                */
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ModelState.AddModelError("", "Something Went wrong...");
                 return View();
             }
         }
