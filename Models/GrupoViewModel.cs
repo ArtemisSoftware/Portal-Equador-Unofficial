@@ -9,6 +9,20 @@ namespace PortalEquador.Models
     public class GrupoViewModel
     {
 
+
+        public int Id { get; set; }
+
+
+        [Required]
+        [Display(Name = "Descrição")]
+        public string Descricao { get; set; }
+
+
+        [Display(Name = "Data de criação")]
+        public DateTime DataCriacao { get; set; }
+
+
+        /*
         public class CriarGrupoViewModel
         {
 
@@ -28,6 +42,6 @@ namespace PortalEquador.Models
 
             public DateTime DataCriacao { get; set; }
         }
-
+        */
     }
 }
