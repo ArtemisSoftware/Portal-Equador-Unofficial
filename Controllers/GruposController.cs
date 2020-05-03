@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PortalEquador.Data;
 using PortalEquador.Models;
+using PortalEquador.Util.Constantes;
 
 namespace PortalEquador.Controllers
 {
@@ -68,23 +70,24 @@ namespace PortalEquador.Controllers
                 {
                     return View(modelo);
                 }
+                
                 /*
-                var leaveType = _mapper.Map<LeaveType>(model);
-                leaveType.DateCreated = DateTime.Now;
+                var grupo = _mapper.Map<Grupo>(modelo);
+                grupo.DataCriacao = DateTime.Now;
 
-                var isSuccess = _repo.Create(leaveType);
+                var resultado = _repo.Create(grupo);
 
-                if (!isSuccess)
+                if (resultado == false)
                 {
-                    ModelState.AddModelError("", "Something Went wrong...");
-                    return View(model);
+                    ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Grupo");
+                    return View(modelo);
                 }
                 */
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                ModelState.AddModelError("", "Something Went wrong...");
+                ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Grupo");
                 return View();
             }
         }
