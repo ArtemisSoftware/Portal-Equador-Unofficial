@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PortalEquador.Models;
+using PortalEquador.Util.Constantes;
 
 namespace PortalEquador.Controllers
 {
@@ -34,7 +35,7 @@ namespace PortalEquador.Controllers
         {
             /*
             var tipos = _repo.FindAll().ToList();
-            var modelo = _mapper.Map<List<Tipo>, List<TipoViewModel>>(grupos);
+            var modelo = _mapper.Map<List<Tipo>, List<TipoViewModel>>(tipos);
             */
 
             List<TipoViewModel> modelo = new List<TipoViewModel>();
@@ -65,6 +66,10 @@ namespace PortalEquador.Controllers
             return View();
         }
 
+
+
+
+
         // GET: Tipos/Create
         public ActionResult Create()
         {
@@ -74,7 +79,7 @@ namespace PortalEquador.Controllers
         // POST: Tipos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(TipoViewModel modelo)
         {
             try
             {
@@ -84,9 +89,14 @@ namespace PortalEquador.Controllers
             }
             catch
             {
+                ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Tipo");
                 return View();
             }
         }
+
+
+
+
 
         // GET: Tipos/Edit/5
         public ActionResult Edit(int id)

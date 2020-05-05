@@ -29,4 +29,11 @@ namespace PortalEquador.Models
         public bool Ativo { get; set; }
 
     }
+
+    public class CriarTipoViewModel
+    {
+        public int NumberUpdated { get; set; }
+
+        public List<GrupoViewModel> Grupos { get; set; }
+    }
 }
