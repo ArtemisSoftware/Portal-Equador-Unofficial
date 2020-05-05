@@ -145,7 +145,38 @@ namespace PortalEquador.Controllers
         // GET: Tipos/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            /*
+            if (!_repo.isExists(id))
+            {
+                return NotFound();
+            }
+            
+            var tipo = _repo.FindById(id);
+            var modelo = _mapper.Map<TipoViewModel>(tipo);
+            */
+
+
+            GrupoViewModel grupo = new GrupoViewModel
+            {
+                Id = 1,
+                Descricao = "Grupo um"
+            };
+
+
+            TipoViewModel modelo = new TipoViewModel
+            {
+                Id = 0,
+                Descricao = "Tipo um",
+                Codigo = "TU",
+                Ativo = true,
+                DataCriacao = DateTime.Now,
+                Grupo = grupo,
+                IdGrupo = grupo.Id
+
+            };
+
+
+            return View(modelo);
         }
 
         // POST: Tipos/Edit/5

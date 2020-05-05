@@ -12,6 +12,10 @@ namespace PortalEquador.Models
 
         public int IdGrupo { get; set; }
 
+        [Display(Name = "Grupo")]
+        public GrupoViewModel Grupo { get; set; }
+
+
         public int Id { get; set; }
 
         [Required]
@@ -34,7 +38,6 @@ namespace PortalEquador.Models
     public class CriarTipoViewModel
     {
 
-
         [Display(Name = "Grupo")]
         public int IdGrupo { get; set; }
 
@@ -49,7 +52,8 @@ namespace PortalEquador.Models
         [Display(Name = "Código")]
         public string Codigo { get; set; }
 
-
-
     }
+
+
+
 }
