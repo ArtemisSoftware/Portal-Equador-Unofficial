@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -32,8 +33,23 @@ namespace PortalEquador.Models
 
     public class CriarTipoViewModel
     {
-        public int NumberUpdated { get; set; }
 
-        public List<GrupoViewModel> Grupos { get; set; }
+
+        [Display(Name = "Grupo")]
+        public int IdGrupo { get; set; }
+
+
+        public IEnumerable<SelectListItem> Grupos { get; set; }
+
+        [Required]
+        [Display(Name = "Descrição")]
+        public string Descricao { get; set; }
+
+
+        [Display(Name = "Código")]
+        public string Codigo { get; set; }
+
+
+
     }
 }

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PortalEquador.Data;
 using PortalEquador.Models;
 using PortalEquador.Util.Constantes;
 
@@ -73,7 +75,49 @@ namespace PortalEquador.Controllers
         // GET: Tipos/Create
         public ActionResult Create()
         {
-            return View();
+            /*
+            var leaveTypes = _leaveTyperepo.FindAll();
+
+            var leaveTypeItems = leaveTypes.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Name,
+                Value = resultado.Id.ToString()
+
+            });
+
+            */
+
+
+            
+            List<GrupoViewModel> grupos = new List<GrupoViewModel>();
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 1,
+                Descricao = "Grupo um"
+            });
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 2,
+                Descricao = "Grupo dois"
+            });
+
+            var items = grupos.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            var modelo = new CriarTipoViewModel
+            {
+                Grupos = items
+            };
+
+            return View(modelo);
+
         }
 
         // POST: Tipos/Create
