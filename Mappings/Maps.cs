@@ -14,6 +14,7 @@ namespace PortalEquador.Mappings
         public Maps()
         {
             CreateMap<Grupo, GrupoViewModel>().ReverseMap();
+            CreateMap<Tipo, TipoViewModel>().ReverseMap();
         }
 
     }

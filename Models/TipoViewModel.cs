@@ -9,6 +9,10 @@ namespace PortalEquador.Models
     public class TipoViewModel
     {
 
+        public int IdGrupo { get; set; }
+
+        public int Id { get; set; }
+
         [Required]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PortalEquador.Models;
 
 namespace PortalEquador.Controllers
 {
@@ -31,7 +32,31 @@ namespace PortalEquador.Controllers
         // GET: Tipos
         public ActionResult Index()
         {
-            return View();
+            /*
+            var tipos = _repo.FindAll().ToList();
+            var modelo = _mapper.Map<List<Tipo>, List<TipoViewModel>>(grupos);
+            */
+
+            List<TipoViewModel> modelo = new List<TipoViewModel>();
+            modelo.Add(new TipoViewModel
+            {
+                Id = 0,
+                Descricao = "Tipo um",
+                Codigo = "TU",
+                Ativo = true,
+                DataCriacao = DateTime.Now
+            });
+            modelo.Add(new TipoViewModel
+            {
+                Id = 1,
+                Descricao = "Tipo dois",
+                Codigo = "TD",
+                Ativo = false,
+                DataCriacao = DateTime.Now
+            });
+
+
+            return View(modelo);
         }
 
         // GET: Tipos/Details/5
