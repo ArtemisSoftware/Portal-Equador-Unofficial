@@ -9,5 +9,6 @@ namespace PortalEquador.Util.Constantes
     {
 
         public readonly static string ERRO_INSERIR = "Erro ao inserir: ";
+        public readonly static string ERRO_EDITAR = "Erro ao editar: ";
     }
 }

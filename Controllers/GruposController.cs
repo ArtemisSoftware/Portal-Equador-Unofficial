@@ -57,6 +57,8 @@ namespace PortalEquador.Controllers
             return View();
         }
 
+
+
         // GET: Grupos/Create
         public ActionResult Create()
         {
@@ -97,6 +99,10 @@ namespace PortalEquador.Controllers
             }
         }
 
+
+
+
+
         // GET: Grupos/Edit/5
         public ActionResult Edit(int id)
         {
@@ -123,12 +129,27 @@ namespace PortalEquador.Controllers
         // POST: Grupos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(GrupoViewModel modelo)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid)
+                {
+                    return View(modelo);
+                }
 
+                /*
+                var grupo = _mapper.Map<Grupo>(modelo);
+
+                var resultado = _repo.Update(grupo);
+               
+
+                if (resultado == false)
+                {
+                    ModelState.AddModelError("", Sintaxe.ERRO_EDITAR + "Grupo");
+                    return View(modelo);
+                }
+                 */
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -137,26 +158,65 @@ namespace PortalEquador.Controllers
             }
         }
 
+
+
+
+
+
+
         // GET: Grupos/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            /*
+            var grupo = _repo.FindById(id);
+
+            if (grupo == null)
+            {
+                return NotFound();
+            }
+
+
+            var resultado = _repo.Delete(grupo);
+
+            if (resultado == false)
+            {
+                return BadRequest();
+            }
+            */
+
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Grupos/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, GrupoViewModel modelo)
         {
             try
             {
-                // TODO: Add delete logic here
+                /*
+                var grupo = _repo.FindById(id);
+
+                if (grupo == null)
+                {
+                    return NotFound();
+                }
+
+
+                var resultado = _repo.Delete(grupo);
+
+                if (resultado == false)
+                {
+                    return View(modelo);
+                }
+                */
+
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(modelo);
             }
         }
     }
