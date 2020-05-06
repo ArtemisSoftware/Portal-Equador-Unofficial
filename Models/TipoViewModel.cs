@@ -16,6 +16,7 @@ namespace PortalEquador.Models
         public GrupoViewModel Grupo { get; set; }
 
 
+
         public int Id { get; set; }
 
         [Required]
@@ -55,5 +56,15 @@ namespace PortalEquador.Models
     }
 
 
+    public class ListaTipoViewModel
+    {
+
+        public int Ordem { get; set; }
+
+        public IEnumerable<SelectListItem> Grupos { get; set; }
+
+        public List<TipoViewModel> Tipos { get; set; }
+
+    }
 
 }

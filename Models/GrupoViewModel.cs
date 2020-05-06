@@ -22,6 +22,10 @@ namespace PortalEquador.Models
         public DateTime DataCriacao { get; set; }
 
 
+        [Display(Name = "Numero de Tipos")]
+        public int NumeroTipos { get; set; }
+
+
         /*
         public class CriarGrupoViewModel
         {

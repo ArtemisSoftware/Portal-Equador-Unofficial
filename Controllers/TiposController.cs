@@ -33,15 +33,53 @@ namespace PortalEquador.Controllers
 
 
         // GET: Tipos
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             /*
-            var tipos = _repo.FindAll().ToList();
+            var tip os = _repo.FindAll().ToList();
             var modelo = _mapper.Map<List<Tipo>, List<TipoViewModel>>(tipos);
             */
 
-            List<TipoViewModel> modelo = new List<TipoViewModel>();
-            modelo.Add(new TipoViewModel
+
+            List<GrupoViewModel> grupos = new List<GrupoViewModel>();
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 12,
+                Descricao = "Grupo um"
+            });
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 2,
+                Descricao = "Grupo dois"
+            });
+
+            var items = grupos.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            int posicao = 0;
+
+            if (id != 0)
+            {
+                foreach (SelectListItem item in items)
+                {
+                    ++posicao;
+
+                    if (item.Value == id.ToString())
+                    {
+                        break;
+                    }
+                }
+            }
+
+
+            List<TipoViewModel> tipos = new List<TipoViewModel>();
+            tipos.Add(new TipoViewModel
             {
                 Id = 0,
                 Descricao = "Tipo um",
@@ -49,7 +87,7 @@ namespace PortalEquador.Controllers
                 Ativo = true,
                 DataCriacao = DateTime.Now
             });
-            modelo.Add(new TipoViewModel
+            tipos.Add(new TipoViewModel
             {
                 Id = 1,
                 Descricao = "Tipo dois",
@@ -58,13 +96,77 @@ namespace PortalEquador.Controllers
                 DataCriacao = DateTime.Now
             });
 
+            var modelo = new ListaTipoViewModel
+            {
+                Grupos = items,
+                Tipos = tipos,
+                Ordem = posicao
+            };
+
+
 
             return View(modelo);
         }
 
+        [HttpPost]
+        public ActionResult Index(ListaTipoViewModel value)
+        {
+            /*
+            var tip os = _repo.FindAll().ToList();
+            var modelo = _mapper.Map<List<Tipo>, List<TipoViewModel>>(tipos);
+            */
+
+
+            List<GrupoViewModel> grupos = new List<GrupoViewModel>();
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 1,
+                Descricao = "Grupo um"
+            });
+            grupos.Add(new GrupoViewModel
+            {
+                Id = 2,
+                Descricao = "Grupo dois"
+            });
+
+            var items = grupos.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+
+
+            List<TipoViewModel> tipos = new List<TipoViewModel>();
+            tipos.Add(new TipoViewModel
+            {
+                Id = 0,
+                Descricao = "Tipo um",
+                Codigo = "TU",
+                Ativo = true,
+                DataCriacao = DateTime.Now
+            });
+
+
+            var modelo = new ListaTipoViewModel
+            {
+                Grupos = items,
+                Tipos = tipos
+            };
+
+
+
+            return View(modelo);
+        }
+
+
         // GET: Tipos/Details/5
         public ActionResult Details(int id)
         {
+
             return View();
         }
 
@@ -89,7 +191,7 @@ namespace PortalEquador.Controllers
             */
 
 
-            
+
             List<GrupoViewModel> grupos = new List<GrupoViewModel>();
             grupos.Add(new GrupoViewModel
             {
@@ -125,17 +227,36 @@ namespace PortalEquador.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TipoViewModel modelo)
         {
+
             try
             {
-                // TODO: Add insert logic here
 
+                if (ModelState.IsValid == false)
+                {
+                    return View(modelo);
+                }
+
+                var tipo = _mapper.Map<Tipo>(modelo);
+                tipo.DataCriacao = DateTime.Now;
+                tipo.Ativo = true;
+                /*
+                var resultado = _repo.Create(tipo);
+
+                if (resultado == false)
+                {
+                    ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Tipo");
+                    return View(modelo);
+                }
+                */
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Tipo");
+                ModelState.AddModelError("", "Something Went wrong...");
                 return View();
             }
+
+
         }
 
 
@@ -182,19 +303,44 @@ namespace PortalEquador.Controllers
         // POST: Tipos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(TipoViewModel modelo)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid == false)
+                {
+                    return View(modelo);
+                }
 
+                /*
+                var registo = _leaveallocationrepo.FindById(modelo.Id);
+                registo.Descricao = modelo.Descricao;
+                registo.Ativo = modelo.Ativo;
+
+                var resultado = _leaveallocationrepo.Update(registo);
+
+                if (resultado == false)
+                {
+                    ModelState.AddModelError("", Sintaxe.ERRO_EDITAR + "Tipo");
+                    return View(modelo);
+                }
+                */
                 return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Details), new { id = model.EmployeeId });
             }
             catch
             {
-                return View();
+                return View(modelo);
             }
         }
+
+
+
+
+
+
+
+
 
         // GET: Tipos/Delete/5
         public ActionResult Delete(int id)
@@ -218,5 +364,18 @@ namespace PortalEquador.Controllers
                 return View();
             }
         }
+
+
+
+        public ActionResult UpdateProduct(ListaTipoViewModel value)
+        {
+
+
+            return View();
+
+        }
+
+
     }
+
 }

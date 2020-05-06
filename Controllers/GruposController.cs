@@ -38,13 +38,17 @@ namespace PortalEquador.Controllers
             List<GrupoViewModel> modelo = new List<GrupoViewModel>();
             modelo.Add(new GrupoViewModel
             {
+                Id = 1,
                 Descricao = "Grupo um",
-                DataCriacao = DateTime.Now
+                DataCriacao = DateTime.Now,
+                NumeroTipos = 0
             });
             modelo.Add(new GrupoViewModel
             {
+                Id = 2,
                 Descricao = "Grupo dois",
-                DataCriacao = DateTime.Now
+                DataCriacao = DateTime.Now,
+                NumeroTipos = 10
             });
 
 
