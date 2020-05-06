@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PortalEquador.Models.ContratoViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+    <div class="card-columns">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contratatos</h5>
+                <p class="card-text">1</p>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Demitidos</h5>
+                <p class="card-text">10</p>
+            </div>
+        </div>
+
+
+    </div>
+
+<br />
+<br />
+
+
+<h1>Index</h1>
+
+<hr />
+
+<p>
+    <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Novo Contrato</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Função
+            </th>
+
+            <th>
+                Empresa
+            </th>
+            <th>
+                Data de Inicio
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empregado.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Funcao.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a asp-controller="Tipos" asp-action="Index" class="btn btn-primary" asp-route-id="@item.Id">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this record?')">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

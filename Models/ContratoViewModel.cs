@@ -9,6 +9,7 @@ namespace PortalEquador.Models
 {
     public class ContratoViewModel
     {
+        public int Id { get; set; }
 
 
         public EmpregadoViewModel Empregado { get; set; }

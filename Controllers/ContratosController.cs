@@ -65,6 +65,7 @@ namespace PortalEquador.Controllers
             List<ContratoViewModel> modelo = new List<ContratoViewModel>();
             modelo.Add(new ContratoViewModel
             {
+                Id = 732489,
                 Funcao = funcoes[0],
                 Empresa = empresas[0],
                 Empregado = empregados[0],
@@ -72,6 +73,8 @@ namespace PortalEquador.Controllers
             });
             modelo.Add(new ContratoViewModel
             {
+
+                Id = 567,
                 Funcao = funcoes[1],
                 Empresa = empresas[1],
                 Empregado = empregados[1],

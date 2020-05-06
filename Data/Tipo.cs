@@ -14,13 +14,6 @@ namespace PortalEquador.Data
         public int Id { get; set; }
 
 
-        [ForeignKey("RequestingEmployeeId")]
-        public Employee RequestingEmployee { get; set; }
-
-        public string RequestingEmployeeId { get; set; }
-
-
-
 
         public string Descricao { get; set; }
 
