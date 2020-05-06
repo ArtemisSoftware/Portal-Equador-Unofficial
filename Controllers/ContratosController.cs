@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PortalEquador.Models;
+using PortalEquador.Util.Constantes;
 
 namespace PortalEquador.Controllers
 {
@@ -98,13 +100,71 @@ namespace PortalEquador.Controllers
         // GET: Contratos/Create
         public ActionResult Create()
         {
-            return View();
+            /*
+            var leaveTypes = await _leaveTyperepo.FindAll();
+
+            var leaveTypeItems = leaveTypes.Select(result => new SelectListItem
+            {
+
+                Text = result.Name,
+                Value = result.Id.ToString()
+
+            });
+            */
+
+            var funcoes = new List<TipoViewModel>();
+            funcoes.Add(new TipoViewModel
+            {
+                Descricao = "Função numero 1"
+            });
+            funcoes.Add(new TipoViewModel
+            {
+                Descricao = "Função numero 2"
+            });
+
+            var empresas = new List<TipoViewModel>();
+            empresas.Add(new TipoViewModel
+            {
+                Descricao = "Empresa numero 1"
+            });
+            empresas.Add(new TipoViewModel
+            {
+                Descricao = "Empresa numero 2"
+            });
+
+
+            var itemsFuncoes = funcoes.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            var itemsEmpresas = empresas.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            var modelo = new CriarContratoViewModel
+            {
+                Funcoes = itemsFuncoes,
+                Empresas = itemsEmpresas
+            };
+            
+
+            return View(modelo);
         }
 
         // POST: Contratos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CriarContratoViewModel modelo)
         {
             try
             {
@@ -114,6 +174,7 @@ namespace PortalEquador.Controllers
             }
             catch
             {
+                ModelState.AddModelError("", Sintaxe.ERRO_INSERIR + "Contrato");
                 return View();
             }
         }

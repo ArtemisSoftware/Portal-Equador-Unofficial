@@ -73,10 +73,6 @@ namespace PortalEquador.Models
 
 
 
-
-        [Display(Name = "Employee Comments")]
-        [MaxLength(300)]
-        public string RequestComments { get; set; }
     }
 
 }
