@@ -92,6 +92,9 @@ namespace PortalEquador.Controllers
             return View();
         }
 
+
+
+
         // GET: Contratos/Create
         public ActionResult Create()
         {

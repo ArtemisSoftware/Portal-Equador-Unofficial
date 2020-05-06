@@ -1,4 +1,5 @@
-﻿using PortalEquador.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PortalEquador.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,4 +37,46 @@ namespace PortalEquador.Models
         public DateTime DataInicio { get; set; }
 
     }
+
+
+
+    public class CriarContratoViewModel
+    {
+
+        [Required]
+        public string Nome { get; set; }
+
+
+        [Display(Name = "Nº Mecanográfico")]
+        [Required]
+        public string NumeroMecanografico { get; set; }
+
+
+
+        [Display(Name = "Data Inicio")]
+        [Required]
+        public string DataInicio { get; set; }
+
+
+
+        public IEnumerable<SelectListItem> Funcoes { get; set; }
+
+        [Display(Name = "Função")]
+        public int IdFuncao { get; set; }
+
+
+
+        public IEnumerable<SelectListItem> Empresas { get; set; }
+
+        [Display(Name = "Empresa")]
+        public int IdEmpresa { get; set; }
+
+
+
+
+        [Display(Name = "Employee Comments")]
+        [MaxLength(300)]
+        public string RequestComments { get; set; }
+    }
+
 }
