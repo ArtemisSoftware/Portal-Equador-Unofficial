@@ -11,11 +11,11 @@ namespace PortalEquador.Models
     {
 
 
-        //public Empregado Empregado { get; set; }
-
+        public EmpregadoViewModel Empregado { get; set; }
 
         [Display(Name = "Empregado")]
         public string IdEmpregado { get; set; }
+
 
 
         public TipoViewModel Funcao { get; set; }
