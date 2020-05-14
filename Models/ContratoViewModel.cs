@@ -61,12 +61,16 @@ namespace PortalEquador.Models
 
         public IEnumerable<SelectListItem> Funcoes { get; set; }
 
+        public int PosicaoFuncao { get; set; }
+
         [Display(Name = "Função")]
         public int IdFuncao { get; set; }
 
 
 
         public IEnumerable<SelectListItem> Empresas { get; set; }
+
+        public int PosicaoEmpresa { get; set; }
 
         [Display(Name = "Empresa")]
         public int IdEmpresa { get; set; }

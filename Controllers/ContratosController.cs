@@ -182,25 +182,144 @@ namespace PortalEquador.Controllers
         // GET: Contratos/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            /*
+            if (!_repo.isExists(id))
+            {
+                return NotFound();
+            }
+
+            var contrato = _repo.FindById(id);
+            var modelo = _mapper.Map<CriarContratoViewModel>(contrato);
+            */
+
+            var funcoes = new List<TipoViewModel>();
+            funcoes.Add(new TipoViewModel
+            {
+                Descricao = "Função numero 1",
+                Id = 1
+                
+            });
+            funcoes.Add(new TipoViewModel
+            {
+                Descricao = "Função numero 2",
+                Id = 2
+            });
+
+            var empresas = new List<TipoViewModel>();
+            empresas.Add(new TipoViewModel
+            {
+                Descricao = "Empresa numero 1",
+                Id = 1
+            });
+            empresas.Add(new TipoViewModel
+            {
+                Descricao = "Empresa numero 2",
+                Id = 2
+            });
+
+
+            var itemsFuncoes = funcoes.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            var itemsEmpresas = empresas.Select(resultado => new SelectListItem
+            {
+
+                Text = resultado.Descricao,
+                Value = resultado.Id.ToString()
+
+            });
+
+
+            var modelo = new CriarContratoViewModel
+            {
+                Nome = "Nome 1",
+                NumeroMecanografico = "000100",
+                DataInicio = "01-09-2009",
+                Funcoes = itemsFuncoes,
+                IdFuncao = 2,
+                Empresas = itemsEmpresas,
+                IdEmpresa = 1,
+            };
+
+
+
+            int posicao = 0;
+
+
+            foreach (SelectListItem item in itemsFuncoes)
+            {
+                ++posicao;
+
+                if (modelo.IdFuncao.ToString() == item.Value)
+                {
+                    break;
+                }
+            }
+
+            modelo.PosicaoFuncao = posicao;
+
+            posicao = 0;
+
+            foreach (SelectListItem item in itemsEmpresas)
+            {
+                ++posicao;
+
+                if (modelo.IdEmpresa.ToString() == item.Value)
+                {
+                    break;
+                }
+            }
+            
+
+            modelo.PosicaoEmpresa = posicao;
+
+
+            return View(modelo);
         }
 
         // POST: Contratos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CriarContratoViewModel modelo)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid == false)
+                {
+                    return View(modelo);
+                }
 
+                /*
+                var registo = _leaveallocationrepo.FindById(modelo.Id);
+                registo.Descricao = modelo.Descricao;
+                registo.Ativo = modelo.Ativo;
+
+                var resultado = _leaveallocationrepo.Update(registo);
+
+                if (resultado == false)
+                {
+                    ModelState.AddModelError("", Sintaxe.ERRO_EDITAR + "Tipo");
+                    return View(modelo);
+                }
+                */
                 return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Details), new { id = model.EmployeeId });
             }
             catch
             {
-                return View();
+                return View(modelo);
             }
         }
+
+
+
 
         // GET: Contratos/Delete/5
         public ActionResult Delete(int id)
